@@ -26,14 +26,18 @@ function is_symbol_adjacent(nline, nColStart, nColEnd)
     return false
 end
 
-local sum = 0;
-for i,line in ipairs(input) do
-    local nstart, nend = line:find("[%d]+")
-    repeat
-        if nstart ~= nil and is_symbol_adjacent(i, nstart, nend) then
-            sum = sum + tonumber(line:sub(nstart, nend))
-        end
-        nstart, nend = line:find("[%d]+", nend + 1)
-    until nend == nil
+function part1()
+    local sum = 0;
+    for i,line in ipairs(input) do
+        local nstart, nend = line:find("[%d]+")
+        repeat
+            if nstart ~= nil and is_symbol_adjacent(i, nstart, nend) then
+                sum = sum + tonumber(line:sub(nstart, nend))
+            end
+            nstart, nend = line:find("[%d]+", nend + 1)
+        until nend == nil
+    end
+    print("part1: " .. sum)
 end
-print(sum)
+
+part1()
